@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/ars-database-server/databases/CGAirlineReservationSystem",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:SqlConnString",
+      "secretStore": "AzureAppSettings"
+    },
+    "storage1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/cgairlinestorage",
+      "type": "storage.azure",
+      "connectionId": "ConnectionStrings:StorAccConnString",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}
