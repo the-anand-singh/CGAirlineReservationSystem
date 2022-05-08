@@ -89,6 +89,7 @@ namespace CGAirlineReservationSystem.Repositories
                 var flights = context.Flights.Where(x => x.Origin == origin && x.Destination == destination && x.Status == "Active").ToList();
                 foreach (Flight flight in flights)
                 {
+                    flightAndSeat = new();
                     flightAndSeat.FlightID = flight.FlightID;
                     flightAndSeat.Origin = flight.Origin;
                     flightAndSeat.Destination = flight.Destination;
