@@ -17,6 +17,7 @@ namespace CGAirlineReservationSystem.DTOs.FlightDTOs
         public string ArrivalTime { get; set; }
         public int NoOfSeats { get; set; }
         public float Fare { get; set; }
+        public string Status { get; set; }
         public int NoOfSeatsAvailable { get; set; }
     }
 

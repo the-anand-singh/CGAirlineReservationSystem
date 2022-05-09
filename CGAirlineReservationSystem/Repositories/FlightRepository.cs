@@ -100,6 +100,7 @@ namespace CGAirlineReservationSystem.Repositories
                     flightAndSeat.DeptTime = flight.DeptTime;
                     flightAndSeat.ArrivalTime = flight.ArrivalTime;
                     flightAndSeat.NoOfSeats = flight.NoOfSeats;
+                    flightAndSeat.Status = flight.Status;
                     flightAndSeat.Fare = flight.Fare;
 
                     var SeatsBooked = context.Reservations.Where(x => x.FlightID == flight.FlightID
