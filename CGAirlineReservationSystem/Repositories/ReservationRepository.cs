@@ -35,6 +35,7 @@ namespace CGAirlineReservationSystem.Repositories
                     
                 else
                 {
+                    reservation.TicketNo = context.Reservations.Max(x => x.TicketNo) + 1;
                     var flight = context.Flights.Where(x => x.FlightID == reservation.FlightID).SingleOrDefault();
                     reservation.TotalFare = reservation.NoOfTickets * flight.Fare;
                     reservation.Status = "Booked";
@@ -112,18 +113,27 @@ namespace CGAirlineReservationSystem.Repositories
             return reservationListDTO;
         }
 
-        public ReservationDTO GetTicketByID(int TicketNo)
+        public ReservationDTO GetTicketByID(int TicketNo, string PassengerName)
         {
             ReservationDTO reservationDTO = new();
             
             try
             {
-                var ticket = context.Reservations.Where(x => x.TicketNo == TicketNo).SingleOrDefault();
-                
+                var ticket = context.Reservations.Where(x => x.TicketNo == TicketNo && x.PassengerName == PassengerName).ToList();
+                if (ticket.Count == 0)
+                {
+                    reservationDTO.IsSuccess = true;
+                    reservationDTO.Reservation = null;
+                    reservationDTO.Message = "Error: You do not have any booking with that TicketID";
+                }
+                else
+                {
+                    reservationDTO.IsSuccess = true;
+                    reservationDTO.Reservation = ticket[0];
+                    reservationDTO.Message = "Request Processed Successfully";
+                }
 
-                reservationDTO.IsSuccess = true;
-                reservationDTO.Reservation = ticket;
-                reservationDTO.Message = "Request Processed Successfully";
+                
             }
             catch (Exception E)
             {

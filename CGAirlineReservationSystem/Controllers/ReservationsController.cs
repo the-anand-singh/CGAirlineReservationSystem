@@ -46,11 +46,11 @@ namespace CGAirlineReservationSystem.Controllers
 
         // GET api/<ReservationsController>/5
         [HttpGet("/reservations/get-ticket-by-id")]
-        public IActionResult GetTicketByID(int id)
+        public IActionResult GetTicketByID(int id, string PassengerName)
         {
             if (ModelState.IsValid)
             {
-                ReservationDTO reservationDTO = reservationRepository.GetTicketByID(id);
+                ReservationDTO reservationDTO = reservationRepository.GetTicketByID(id, PassengerName);
                 if (reservationDTO.IsSuccess)
                 {
                     return Ok(reservationDTO);

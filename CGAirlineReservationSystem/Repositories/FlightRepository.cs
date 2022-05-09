@@ -77,7 +77,7 @@ namespace CGAirlineReservationSystem.Repositories
             return flightDTO;
         }
 
-        public FlightandSeatDTO GetAllFlights(string origin, string destination, DateTime journeyDate)
+        public FlightandSeatDTO GetAllFlights(string origin, string destination, DateTime journeyDate, bool IsAdmin)
         {
             FlightandSeatDTO flightandSeatDTO = new ();
             
@@ -86,7 +86,11 @@ namespace CGAirlineReservationSystem.Repositories
                 List<FlightAndSeat> result = new();
                 FlightAndSeat flightAndSeat = new ();
 
-                var flights = context.Flights.Where(x => x.Origin == origin && x.Destination == destination && x.Status == "Active").ToList();
+                var flights = context.Flights.Where(x => x.Origin == origin && x.Destination == destination).ToList();
+
+                if (!IsAdmin)
+                    flights = flights.Where(x => x.Status == "Active").ToList();
+
                 foreach (Flight flight in flights)
                 {
                     flightAndSeat = new();

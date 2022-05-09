@@ -28,11 +28,11 @@ namespace CGAirlineReservationSystem.Controllers
 
         // GET: api/<FlightsController>
         [HttpGet("/flights/all-flights")]
-        public IActionResult GetAllFlights(string origin, string destination, DateTime journeyDate)
+        public IActionResult GetAllFlights(string origin, string destination, DateTime journeyDate, bool IsAdmin)
         {
             if (ModelState.IsValid)
             {
-                FlightandSeatDTO flightandSeatDTO = flightRepository.GetAllFlights(origin, destination, journeyDate);
+                FlightandSeatDTO flightandSeatDTO = flightRepository.GetAllFlights(origin, destination, journeyDate, IsAdmin);
                 if (flightandSeatDTO.IsSuccess)
                 {
                     return Ok(flightandSeatDTO);

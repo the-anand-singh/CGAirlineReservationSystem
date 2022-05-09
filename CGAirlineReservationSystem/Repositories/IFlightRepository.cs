@@ -10,7 +10,7 @@ namespace CGAirlineReservationSystem.Repositories
 {
     public interface IFlightRepository
     {
-        FlightandSeatDTO GetAllFlights(string origin, string destination, DateTime journeyDate);
+        FlightandSeatDTO GetAllFlights(string origin, string destination, DateTime journeyDate, bool IsAdmin);
         FlightDTO GetFlightsByID(int id);
         FlightDTO AddFlight(Flight flight);
         FlightDTO RemoveFlight(int id);
