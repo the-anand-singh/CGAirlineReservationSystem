@@ -1,6 +1,7 @@
 ﻿using CGAirlineReservationSystem.DTOs.ReservationDTOs;
 using CGAirlineReservationSystem.Entities;
 using CGAirlineReservationSystem.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,6 +34,8 @@ namespace CGAirlineReservationSystem.Controllers
             }
             return StatusCode(StatusCodes.Status500InternalServerError, reservationListDTO.Message);
         }
+
+        [Authorize]
         [HttpGet("/reservations/total-revenue")]
         public IActionResult GetTotalRevenue()
         {
@@ -75,6 +78,7 @@ namespace CGAirlineReservationSystem.Controllers
             return BadRequest(ModelState);
         }
 
+        [Authorize]
         [HttpGet("/reservations/get-revenue-by-flight")]
         public IActionResult GetRevenueByFlight(int FlightID)
         {

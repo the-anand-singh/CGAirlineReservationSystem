@@ -2,6 +2,7 @@
 using CGAirlineReservationSystem.DTOs.FlightDTOs;
 using CGAirlineReservationSystem.Entities;
 using CGAirlineReservationSystem.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -59,6 +60,7 @@ namespace CGAirlineReservationSystem.Controllers
         }
 
         // POST api/<FlightsController>
+        [Authorize]
         [HttpPost("/flights/add-flight")]
         public IActionResult AddFlight(Flight flight)
         {
@@ -75,6 +77,7 @@ namespace CGAirlineReservationSystem.Controllers
         }
 
         // DELETE api/<FlightsController>/5
+        [Authorize]
         [HttpPut("/flights/remove-flight")]
         public IActionResult RemoveFlight(int id)
         {
@@ -91,6 +94,7 @@ namespace CGAirlineReservationSystem.Controllers
         }
 
         // DELETE api/<FlightsController>/5
+        [Authorize]
         [HttpPut("/flights/edit-flight")]
         public IActionResult EditFlight(Flight flight)
         {
