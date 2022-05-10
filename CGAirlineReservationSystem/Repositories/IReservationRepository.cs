@@ -9,7 +9,7 @@ namespace CGAirlineReservationSystem.Repositories
         ReservationDTO GetTicketByID(int TicketNo, string PassengerName);
         ReservationListDTO GetTicketByPassengerName(string PassengerName);
         ReservationDTO AddTicket(Reservation reservation);
-        ReservationDTO CancelTicket(Reservation reservation);
+        ReservationDTO CancelTicket(int TicketNo);
         RevenueDTO GetRevenueByFlight(int FlightID);
         RevenueDTO GetTotalRevenue();
     }

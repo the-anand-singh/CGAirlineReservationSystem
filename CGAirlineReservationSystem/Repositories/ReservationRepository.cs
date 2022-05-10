@@ -63,29 +63,29 @@ namespace CGAirlineReservationSystem.Repositories
             return reservationDTO;
         }
 
-        public ReservationDTO CancelTicket(Reservation reservation)
+        public ReservationDTO CancelTicket(int TicketNo) //Reservation reservation
         {
             ReservationDTO reservationDTO = new();
-            if (reservation.JourneyDate <= DateTime.Now)
+            /*if (reservation.JourneyDate <= DateTime.Now)
             {
                 reservationDTO.IsSuccess = false;
                 reservationDTO.Reservation = reservation;
                 reservationDTO.Message = "Ticket Could not be cancelled - Ticket expired!";
-            }
+            }*/
 
             try
             {
-                context.Reservations.Where(x => x.TicketNo == reservation.TicketNo).ToList().ForEach(x => x.Status = "Cancelled");
+                context.Reservations.Where(x => x.TicketNo == TicketNo).ToList().ForEach(x => x.Status = "Cancelled");
                 context.SaveChanges();
 
                 reservationDTO.IsSuccess = true;
-                reservationDTO.Reservation = context.Reservations.Where(x => x.TicketNo == reservation.TicketNo).SingleOrDefault();
+                reservationDTO.Reservation = context.Reservations.Where(x => x.TicketNo == TicketNo).SingleOrDefault();
                 reservationDTO.Message = "Ticket Cancelled - you will recieve refund in 5-7 business days";
             }
             catch (Exception E)
             {
                 reservationDTO.IsSuccess = false;
-                reservationDTO.Reservation = reservation;
+                reservationDTO.Reservation = context.Reservations.Where(x => x.TicketNo == TicketNo).SingleOrDefault(); ;
                 reservationDTO.Message = E.Message;
             }
             return reservationDTO;

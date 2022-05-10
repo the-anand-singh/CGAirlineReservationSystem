@@ -111,12 +111,12 @@ namespace CGAirlineReservationSystem.Controllers
         }
 
         // 
-        [HttpPut("/reservations/cancel-ticket")]
-        public IActionResult CancelTicket(Reservation reservation)
+        [HttpDelete("/reservations/cancel-ticket")]
+        public IActionResult CancelTicket(int TicketNo)
         {
             if (ModelState.IsValid)
             {
-                ReservationDTO reservationDTO = reservationRepository.CancelTicket(reservation);
+                ReservationDTO reservationDTO = reservationRepository.CancelTicket(TicketNo);
                 if (reservationDTO.IsSuccess)
                 {
                     return Ok(reservationDTO);

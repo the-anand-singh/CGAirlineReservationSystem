@@ -78,7 +78,7 @@ namespace CGAirlineReservationSystem.Controllers
 
         // DELETE api/<FlightsController>/5
         [Authorize]
-        [HttpPut("/flights/remove-flight")]
+        [HttpDelete("/flights/remove-flight")]
         public IActionResult RemoveFlight(int id)
         {
             if (ModelState.IsValid)

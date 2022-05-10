@@ -160,7 +160,7 @@ namespace CGAirlineReservationSystem.Repositories
             catch (Exception E)
             {
                 flightDTO.IsSuccess = false;
-                flightDTO.Flight = null;
+                flightDTO.Flight = context.Flights.Where(x => x.FlightID == id).SingleOrDefault();
                 flightDTO.Message = E.Message;
             }
             return flightDTO;
